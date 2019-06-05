@@ -28,7 +28,7 @@ public class MyApplication {
 
     private Form current;
     private Resources theme;
-
+    public static String baseUrl = "http://127.0.0.1:3000";
     public void init(Object context) {
         // use two network threads instead of one
         updateNetworkThreadCount(2);
@@ -36,7 +36,7 @@ public class MyApplication {
         theme = UIManager.initFirstTheme("/theme");
 
         // Enable Toolbar on all Forms by default
-        
+        Toolbar.setGlobalToolbar(true);
 
         // Pro only feature
         Log.bindCrashProtection(true);
@@ -78,7 +78,7 @@ public class MyApplication {
 
             @Override
             protected void selectTab(Component tab) {
-               
+
             }
 
             @Override
@@ -88,7 +88,7 @@ public class MyApplication {
         };
 
         tb.setTabUIID(null);
-        tb.addTab("Prestataires", new Label("Prestataires"));
+        tb.addTab("Prestataires", new Prestataires(theme).getForm());
         tb.addTab("localisation", new Label("localisation"));
         tb.addTab("liste des demandes", new Label("liste des demandes"));
         tb.addTab("liste des annonces", new Label("liste des annonces"));
