@@ -89,12 +89,12 @@ public class MyApplication {
 
         tb.setTabUIID(null);
         tb.addTab("Prestataires", new Prestataires(theme).getForm());
-        tb.addTab("localisation", new Label("localisation"));
+        tb.addTab("localisation", new Localisation(theme).getForm());
         tb.addTab("liste des demandes", new Label("liste des demandes"));
         tb.addTab("liste des annonces", new Label("liste des annonces"));
 
         tb.getTabsContainer().setScrollableX(true);
-
+        tb.setSwipeActivated(false);
         hi.add(BorderLayout.CENTER, tb);
 
         hi.show();
