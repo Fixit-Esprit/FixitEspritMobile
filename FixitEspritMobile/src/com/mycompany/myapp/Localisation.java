@@ -46,10 +46,12 @@ public class Localisation {
     Picker pickerservice;
     ArrayList<Prestataire> prestataires;
     InfiniteContainer ic;
+
     public Localisation(Resources theme) {
         this.theme = theme;
         form = new Form("Native Maps Test");
         form.setLayout(new BorderLayout());
+        form.getToolbar().hideToolbar();
         pickerservice = new Picker();
         final MapContainer cnt = new MapContainer(HTML_API_KEY);
 
@@ -62,7 +64,7 @@ public class Localisation {
         Container root = LayeredLayout.encloseIn(
                 BorderLayout.center(cnt),
                 BorderLayout.south(
-                        FlowLayout.encloseBottom(buttonrecherche,pickerservice)
+                        FlowLayout.encloseBottom(buttonrecherche, pickerservice)
                 )
         );
 
