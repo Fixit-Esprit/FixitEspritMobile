@@ -91,7 +91,7 @@ public class MyApplication {
         tb.addTab("Prestataires", new Prestataires(theme).getForm());
         tb.addTab("localisation", new Localisation(theme).getForm());
         tb.addTab("liste des demandes", new ClientListDemande(theme).getForm());
-        tb.addTab("liste des annonces", new Label("liste des annonces"));
+        tb.addTab("liste des annonces",new ClientListAnnonce(theme).getForm());
 
         tb.getTabsContainer().setScrollableX(true);
         tb.setSwipeActivated(false);

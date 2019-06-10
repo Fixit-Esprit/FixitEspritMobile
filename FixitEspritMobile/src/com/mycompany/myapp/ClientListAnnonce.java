@@ -5,7 +5,6 @@
  */
 package com.mycompany.myapp;
 
-import com.codename1.components.ImageViewer;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
@@ -16,7 +15,6 @@ import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Form;
-import com.codename1.ui.Image;
 import com.codename1.ui.InfiniteContainer;
 import com.codename1.ui.Label;
 import com.codename1.ui.Stroke;
@@ -27,32 +25,29 @@ import com.codename1.ui.plaf.RoundRectBorder;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
+import com.mycompany.myapp.entity.Annonce;
 import com.mycompany.myapp.entity.Demande;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Map;
 
-/**
- *
- * @author abdelhalim.benjmila
- */
-public class ClientListDemande {
+public class ClientListAnnonce {
 
     private Form form;
     private Resources theme;
     java.util.List<Map<String, Object>> services;
     java.util.List<Map<String, Object>> allprestataire;
     Picker pickerservice;
-    ArrayList<Demande> demandes;
+    ArrayList<Annonce> annonces;
     InfiniteContainer ic;
 
-    public ClientListDemande(Resources theme) {
+    public ClientListAnnonce(Resources theme) {
         this.theme = theme;
         form = new Form(BoxLayout.y());
         form.getToolbar().hideToolbar();
 
-        demandes = new ArrayList<>();
+        annonces = new ArrayList<>();
         getAllDemandeAccepter();
 
         ic = new InfiniteContainer() {
@@ -63,35 +58,34 @@ public class ClientListDemande {
 
                 System.out.println(amount);
                 if (index == 0) {
-                    cmps = new Component[demandes.size()];
+                    cmps = new Component[annonces.size()];
                 }
 
-                if (index + amount > demandes.size()) {
-                    amount = demandes.size() - index;
+                if (index + amount > annonces.size()) {
+                    amount = annonces.size() - index;
                 }
 
                 if (amount <= 0) {
                     return null;
                 }
 
-                for (int i = 0; i < demandes.size(); i++) {
+                for (int i = 0; i < annonces.size(); i++) {
                     Container container = new Container(BoxLayout.y());
 
                     Container container2 = new Container(new BorderLayout());
                     Container container3 = new Container(new BorderLayout());
                     Container container4 = new Container(new BorderLayout());
 
-                    Label prix = new Label(String.valueOf(demandes.get(i).getPrix()) + " DT");
-                    Label title = new Label("Title : " + demandes.get(i).getTitle());
-                    Label description = new Label("description :" + demandes.get(i).getDescription());
-                    container3.add(BorderLayout.WEST, title).add(BorderLayout.EAST, prix);
+                    Label title = new Label("Title : " + annonces.get(i).getTitle());
+                    Label description = new Label("description :" + annonces.get(i).getDescription());
+                    container3.add(BorderLayout.WEST, title);
                     container.add(container3).add(description);
-                    DateFormat Format = new SimpleDateFormat("yyyy-MM-dd");
-                    Label nomprestataire = new Label(demandes.get(i).getNomprestataire());
-                    Label date = new Label(Format.format(demandes.get(i).getDateFunction()));
+
+                    Label nomprestataire = new Label("Min prix :" + String.valueOf(annonces.get(i).getMinprix())+" DT");
+                    Label date = new Label("Max prix :" + String.valueOf(annonces.get(i).getMaxprix())+" DT");
                     container4.add(BorderLayout.WEST, nomprestataire).add(BorderLayout.EAST, date);
 
-                    Button buttondemande = new Button("payer");
+                    Button buttondemande = new Button("liste des prestataires accepte");
                     container2.add(BorderLayout.EAST, buttondemande);
 
                     container.add(container4).add(container2);
@@ -121,7 +115,7 @@ public class ClientListDemande {
     private void getAllDemandeAccepter() {
         try {
             ConnectionRequest req = new ConnectionRequest();
-            req.setUrl(MyApplication.baseUrl + "/demande/getAllDemandeAccepter/7");
+            req.setUrl(MyApplication.baseUrl + "/annonce/getAnnonceByIdClient/7");
             req.setPost(false);
             req.addResponseListener(new ActionListener<NetworkEvent>() {
                 @Override
@@ -132,15 +126,14 @@ public class ClientListDemande {
 
                         for (Map<String, Object> p : alldemande) {
                             System.out.println(alldemande);
-                            Demande demande = new Demande();
+                            Annonce annonce = new Annonce();
                             System.out.println((Double.parseDouble(p.get("id").toString())));
-                            demande.setId((int) (Double.parseDouble(p.get("id").toString())));
-                            demande.setNomprestataire(p.get("nom").toString() + " " + p.get("prenom").toString());
-                            demande.setTitle(p.get("title").toString());
-                            demande.setDescription(p.get("description").toString());
-                            demande.setDateFunction(p.get("dateFunction").toString());
-                            demande.setPrix((int) (Double.parseDouble(p.get("prix").toString())));
-                            demandes.add(demande);
+                            annonce.setId((int) (Double.parseDouble(p.get("id").toString())));
+                            annonce.setTitle(p.get("title").toString());
+                            annonce.setDescription(p.get("description").toString());
+                            annonce.setMinprix((int) (Double.parseDouble(p.get("minprix").toString())));
+                            annonce.setMaxprix((int) (Double.parseDouble(p.get("maxprix").toString())));
+                            annonces.add(annonce);
                             System.out.println(p);
                         }
 
