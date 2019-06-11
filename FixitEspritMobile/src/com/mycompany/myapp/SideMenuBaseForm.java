@@ -16,9 +16,9 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
-
 package com.mycompany.myapp;
 
+import com.codename1.components.ImageViewer;
 import com.codename1.components.ToastBar;
 import com.codename1.ui.Container;
 import com.codename1.ui.FontImage;
@@ -50,15 +50,26 @@ public abstract class SideMenuBaseForm extends Form {
     public SideMenuBaseForm(Layout contentPaneLayout) {
         super(contentPaneLayout);
     }
-    
-    public void setupSideMenu(Resources res) {
 
-        getToolbar().addMaterialCommandToSideMenu("  Dashboard", FontImage.MATERIAL_DASHBOARD,  e -> showOtherForm(res));
-        getToolbar().addMaterialCommandToSideMenu("  Activity", FontImage.MATERIAL_TRENDING_UP,  e -> showOtherForm(res));
-        getToolbar().addMaterialCommandToSideMenu("  Tasks", FontImage.MATERIAL_ACCESS_TIME,  e -> showOtherForm(res));
-        getToolbar().addMaterialCommandToSideMenu("  Account Settings", FontImage.MATERIAL_SETTINGS,  e -> showOtherForm(res));
+    public void setupSideMenu(Resources res) {
+        Image profilePic = res.getImage("bg.jpg");
+        Image mask = res.getImage("avatar.png");
+        mask = mask.scaledHeight(mask.getHeight() + 200 / 4 * 3);
+        profilePic = profilePic.fill(mask.getWidth(), mask.getHeight());
+        Label profilePicLabel = new Label("  Jennifer Wilson", profilePic, "SideMenuTitle");
+        profilePicLabel.setMask(mask.createMask());
+
+        Container sidemenuTop = BorderLayout.center(profilePicLabel);
+        sidemenuTop.setUIID("SidemenuTop");
+
+        getToolbar().addComponentToSideMenu(sidemenuTop);
+        
+        getToolbar().addMaterialCommandToSideMenu("  Dashboard", FontImage.MATERIAL_DASHBOARD, e -> showOtherForm(res));
+        getToolbar().addMaterialCommandToSideMenu("  Activity", FontImage.MATERIAL_TRENDING_UP, e -> showOtherForm(res));
+        getToolbar().addMaterialCommandToSideMenu("  Tasks", FontImage.MATERIAL_ACCESS_TIME, e -> showOtherForm(res));
+        getToolbar().addMaterialCommandToSideMenu("  Account Settings", FontImage.MATERIAL_SETTINGS, e -> showOtherForm(res));
 
     }
-    
+
     protected abstract void showOtherForm(Resources res);
 }
