@@ -9,8 +9,6 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
-import com.codename1.l10n.DateFormat;
-import com.codename1.l10n.SimpleDateFormat;
 import com.codename1.ui.Button;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
@@ -26,13 +24,13 @@ import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
 import com.mycompany.myapp.entity.Annonce;
-import com.mycompany.myapp.entity.Demande;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ClientListAnnonce {
+
+public class PrestataireListAnnonce {
 
     private Form form;
     private Resources theme;
@@ -42,13 +40,13 @@ public class ClientListAnnonce {
     ArrayList<Annonce> annonces;
     InfiniteContainer ic;
 
-    public ClientListAnnonce(Resources theme) {
+    public PrestataireListAnnonce(Resources theme) {
         this.theme = theme;
         form = new Form(BoxLayout.y());
         form.getToolbar().hideToolbar();
 
         annonces = new ArrayList<>();
-        getAnnonceByIdClient();
+        getAllDemandeAccepter();
 
         ic = new InfiniteContainer() {
             Component[] cmps;
@@ -112,7 +110,7 @@ public class ClientListAnnonce {
         return form;
     }
 
-    private void getAnnonceByIdClient() {
+    private void getAllDemandeAccepter() {
         try {
             ConnectionRequest req = new ConnectionRequest();
             req.setUrl(MyApplication.baseUrl + "/annonce/getAnnonceByIdClient/7");
