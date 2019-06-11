@@ -16,7 +16,6 @@ import com.codename1.io.NetworkEvent;
 import com.codename1.ui.Component;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Image;
-import com.codename1.ui.Tabs;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 
@@ -29,6 +28,7 @@ public class MyApplication {
     private Form current;
     private Resources theme;
     public static String baseUrl = "http://127.0.0.1:3000";
+
     public void init(Object context) {
         // use two network threads instead of one
         updateNetworkThreadCount(2);
@@ -57,47 +57,7 @@ public class MyApplication {
             current.show();
             return;
         }
-        Form hi = new Form("FIXIT TUNISIE", new BorderLayout());
-
-        Tabs tb = new Tabs() {
-            @Override
-            protected Component createTab(String title, Image icon) {
-                SpanButton custom = new SpanButton(title);
-                custom.setIcon(icon);
-                custom.setUIID("Container");
-                custom.setTextUIID("Tab");
-                custom.setIconPosition(BorderLayout.NORTH);
-                custom.setIconUIID("Tab");
-                return custom;
-            }
-
-            @Override
-            protected void setTabSelectedIcon(Component tab, Image icon) {
-                ((SpanButton) tab).setPressedIcon(icon);
-            }
-
-            @Override
-            protected void selectTab(Component tab) {
-
-            }
-
-            @Override
-            protected void bindTabActionListener(Component tab, ActionListener l) {
-                ((SpanButton) tab).addActionListener(l);
-            }
-        };
-
-        tb.setTabUIID(null);
-        tb.addTab("Prestataires", new Prestataires(theme).getForm());
-        tb.addTab("localisation", new Localisation(theme).getForm());
-        tb.addTab("liste des demandes", new ClientListDemande(theme).getForm());
-        tb.addTab("liste des annonces",new ClientListAnnonce(theme).getForm());
-
-        tb.getTabsContainer().setScrollableX(true);
-        tb.setSwipeActivated(false);
-        hi.add(BorderLayout.CENTER, tb);
-
-        hi.show();
+        new Tabs(theme).getForm();
     }
 
     public void stop() {
@@ -110,5 +70,7 @@ public class MyApplication {
 
     public void destroy() {
     }
+
+
 
 }
