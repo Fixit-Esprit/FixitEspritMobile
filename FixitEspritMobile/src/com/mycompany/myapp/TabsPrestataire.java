@@ -5,6 +5,7 @@
  */
 package com.mycompany.myapp;
 
+import com.codename1.charts.util.ColorUtil;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanButton;
 import com.codename1.ui.Button;
@@ -75,8 +76,8 @@ public class TabsPrestataire extends SideMenuBaseForm {
         };
 
         tb.setTabUIID(null);
-        tb.addTab("liste des annonces", new ClientListAnnonce(theme).getForm());
-        tb.addTab("liste des demandes", new ClientListDemande(theme).getForm());
+        tb.addTab("liste des annonces", new PrestataireListAnnonce(theme).getForm());
+        tb.addTab("liste des demandes", new PrestataireListDemande(theme).getForm());
 
         tb.getTabsContainer().setScrollableX(true);
         tb.setSwipeActivated(false);
@@ -102,16 +103,17 @@ public class TabsPrestataire extends SideMenuBaseForm {
         sidemenuTop.setUIID("SidemenuTop");
 
         form.getToolbar().addComponentToSideMenu(sidemenuTop);
-
+        Label title = new Label("FIXIT TUNISIE");
+        title.getStyle().setFgColor(0xFFFFFF);
         Container titleComponent
                 = new Container(new BorderLayout());
-        titleComponent.
-                add(BorderLayout.CENTER, "FIXIT TUNISIE");
+        titleComponent.add(BorderLayout.WEST, new ImageViewer(theme.getImage("icon.png").scaled(94, 94))).
+                add(BorderLayout.CENTER,title);
         titleComponent.setUIID("BottomPaddingContainer");
         form.getToolbar().setTitleComponent(titleComponent);
 
         form.getToolbar().addMaterialCommandToSideMenu("  Acceuil", FontImage.MATERIAL_DASHBOARD, e -> getToolbar().closeSideMenu());
-        form.getToolbar().addMaterialCommandToSideMenu("  Agaenda", FontImage.MATERIAL_CALL_END, e -> showOtherForm(theme));
+        form.getToolbar().addMaterialCommandToSideMenu("  Agaenda", FontImage.MATERIAL_DATE_RANGE, e -> showOtherForm(theme));
         form.getToolbar().addMaterialCommandToSideMenu("  Déconnexion", FontImage.MATERIAL_EXIT_TO_APP, e -> showOtherForm(theme));
 
     }

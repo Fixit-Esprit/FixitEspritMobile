@@ -88,12 +88,12 @@ public class Tabs extends SideMenuBaseForm {
 
         form.getToolbar().addComponentToSideMenu(sidemenuTop);
 
-
-
+        Label title = new Label("FIXIT TUNISIE");
+        title.getStyle().setFgColor(0xFFFFFF);
         Container titleComponent
                 = new Container(new BorderLayout());
-        titleComponent.
-                add(BorderLayout.CENTER, "FIXIT TUNISIE");
+        titleComponent.add(BorderLayout.WEST, new ImageViewer(theme.getImage("icon.png").scaled(94, 94))).
+                add(BorderLayout.CENTER,title);
         titleComponent.setUIID("BottomPaddingContainer");
         form.getToolbar().setTitleComponent(titleComponent);
 

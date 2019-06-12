@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<resource majorVersion="1" minorVersion="9" useXmlUI="false">
+<resource majorVersion="1" minorVersion="10" useXmlUI="false">
     <image name="avatar.png"  />
     <image name="back-command.png" type="multi"  />
     <image name="bg.jpg"  />
@@ -63,6 +63,7 @@
     <image name="Dialog.borderTop_1.png" type="multi"  />
     <image name="Dialog.borderTopL_1.png" type="multi"  />
     <image name="Dialog.borderTopR_1.png" type="multi"  />
+    <image name="icon.png"  />
     <image name="Logo.png"  />
     <image name="Menu.borderBottom_2.png" type="multi"  />
     <image name="Menu.borderBottomL_2.png" type="multi"  />
