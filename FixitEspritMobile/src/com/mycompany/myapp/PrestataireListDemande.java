@@ -28,6 +28,7 @@ import com.codename1.ui.plaf.RoundRectBorder;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
+import static com.mycompany.myapp.Signin.roleProfile;
 import com.mycompany.myapp.entity.Demande;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
@@ -85,9 +86,8 @@ public class PrestataireListDemande {
 
                     Label prix = new Label("Prix (DT)");
                     TextField textFieldprix = new TextField("", "Prix");
-                    textFieldprix.setWidth(100);
-                    container5.add(BorderLayout.WEST, prix).add(BorderLayout.EAST,textFieldprix);
-                    
+                    container5.add(BorderLayout.WEST, prix).add(BorderLayout.EAST, textFieldprix);
+
                     Label title = new Label("Title : " + demandes.get(i).getTitle());
                     Label description = new Label("description :" + demandes.get(i).getDescription());
                     container3.add(BorderLayout.WEST, title);
@@ -128,7 +128,7 @@ public class PrestataireListDemande {
     private void getAllDemandeAccepter() {
         try {
             ConnectionRequest req = new ConnectionRequest();
-            req.setUrl(MyApplication.baseUrl + "/demande/getAllNewDemande/10");
+            req.setUrl(MyApplication.baseUrl + "/demande/getAllNewDemande/"+roleProfile.getId());
             req.setPost(false);
             req.addResponseListener(new ActionListener<NetworkEvent>() {
                 @Override
@@ -146,11 +146,11 @@ public class PrestataireListDemande {
                             demande.setTitle(p.get("title").toString());
                             demande.setDescription(p.get("description").toString());
                             demande.setDateFunction(p.get("dateFunction").toString());
-                            
+
                             demandes.add(demande);
                             System.out.println(p);
                         }
-
+                        ic.refresh();
                     } catch (Exception ex) {
                     }
                 }

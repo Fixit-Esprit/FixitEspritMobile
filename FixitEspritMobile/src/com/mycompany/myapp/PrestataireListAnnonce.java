@@ -23,6 +23,7 @@ import com.codename1.ui.plaf.RoundRectBorder;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
+import static com.mycompany.myapp.Signin.roleProfile;
 import com.mycompany.myapp.entity.Annonce;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
@@ -149,7 +150,7 @@ public class PrestataireListAnnonce {
     private void getIdServiceByIdPrestataire() {
         try {
             ConnectionRequest req = new ConnectionRequest();
-            req.setUrl(MyApplication.baseUrl + "/annonce/getIdServiceByIdPrestataire/10");
+            req.setUrl(MyApplication.baseUrl + "/annonce/getIdServiceByIdPrestataire/"+roleProfile.getId());
             req.setPost(false);
             req.addResponseListener(new ActionListener<NetworkEvent>() {
                 @Override

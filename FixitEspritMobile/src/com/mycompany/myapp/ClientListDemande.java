@@ -27,6 +27,7 @@ import com.codename1.ui.plaf.RoundRectBorder;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
+import static com.mycompany.myapp.Signin.roleProfile;
 import com.mycompany.myapp.entity.Demande;
 import java.io.ByteArrayInputStream;
 import java.io.InputStreamReader;
@@ -122,7 +123,7 @@ public class ClientListDemande {
     private void getAllDemandeAccepter() {
         try {
             ConnectionRequest req = new ConnectionRequest();
-            req.setUrl(MyApplication.baseUrl + "/demande/getAllDemandeAccepter/7");
+            req.setUrl(MyApplication.baseUrl + "/demande/getAllDemandeAccepter/"+roleProfile.getId());
             req.setPost(false);
             req.addResponseListener(new ActionListener<NetworkEvent>() {
                 @Override
@@ -144,7 +145,7 @@ public class ClientListDemande {
                             demandes.add(demande);
                             System.out.println(p);
                         }
-
+                        ic.refresh();
                     } catch (Exception ex) {
                     }
                 }

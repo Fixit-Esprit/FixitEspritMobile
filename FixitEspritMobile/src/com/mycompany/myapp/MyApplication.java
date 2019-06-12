@@ -51,13 +51,15 @@ public class MyApplication {
             Dialog.show("Connection Error", "There was a networking error in the connection to " + err.getConnectionRequest().getUrl(), "OK", null);
         });
     }
+    Signin signup;
 
     public void start() {
         if (current != null) {
             current.show();
             return;
         }
-        new Tabs(theme).getForm();
+        signup = new Signin(theme);
+        signup.getForm().show();
     }
 
     public void stop() {
@@ -70,7 +72,5 @@ public class MyApplication {
 
     public void destroy() {
     }
-
-
 
 }

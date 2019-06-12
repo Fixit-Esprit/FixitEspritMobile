@@ -4,7 +4,9 @@
     <image name="avatar.png"  />
     <image name="back-command.png" type="multi"  />
     <image name="bg.jpg"  />
+    <image name="blur_bg.jpg"  />
     <image name="border.png"  />
+    <image name="briefing.png"  />
     <image name="Button.borderBottom_1.png" type="multi"  />
     <image name="Button.borderBottom_2.png" type="multi"  />
     <image name="Button.borderBottomL_1.png" type="multi"  />
@@ -64,7 +66,8 @@
     <image name="Dialog.borderTopL_1.png" type="multi"  />
     <image name="Dialog.borderTopR_1.png" type="multi"  />
     <image name="icon.png"  />
-    <image name="Logo.png"  />
+    <image name="logo.png"  />
+    <image name="LogoMobile.png"  />
     <image name="Menu.borderBottom_2.png" type="multi"  />
     <image name="Menu.borderBottomL_2.png" type="multi"  />
     <image name="Menu.borderBottomR_2.png" type="multi"  />
@@ -83,6 +86,7 @@
     <image name="OKGR.borderTop_1.png" type="multi"  />
     <image name="OKGR.borderTopL_1.png" type="multi"  />
     <image name="OKGR.borderTopR_1.png" type="multi"  />
+    <image name="project.png"  />
     <image name="round.png" type="multi"  />
     <image name="sliderBlueCenter.png" type="multi"  />
     <image name="sliderBlueLeft.png" type="multi"  />

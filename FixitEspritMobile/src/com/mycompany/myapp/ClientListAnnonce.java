@@ -25,6 +25,7 @@ import com.codename1.ui.plaf.RoundRectBorder;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.Resources;
+import static com.mycompany.myapp.Signin.roleProfile;
 import com.mycompany.myapp.entity.Annonce;
 import com.mycompany.myapp.entity.Demande;
 import java.io.ByteArrayInputStream;
@@ -81,8 +82,8 @@ public class ClientListAnnonce {
                     container3.add(BorderLayout.WEST, title);
                     container.add(container3).add(description);
 
-                    Label nomprestataire = new Label("Min prix :" + String.valueOf(annonces.get(i).getMinprix())+" DT");
-                    Label date = new Label("Max prix :" + String.valueOf(annonces.get(i).getMaxprix())+" DT");
+                    Label nomprestataire = new Label("Min prix :" + String.valueOf(annonces.get(i).getMinprix()) + " DT");
+                    Label date = new Label("Max prix :" + String.valueOf(annonces.get(i).getMaxprix()) + " DT");
                     container4.add(BorderLayout.WEST, nomprestataire).add(BorderLayout.EAST, date);
 
                     Button buttondemande = new Button("liste des prestataires accepte");
@@ -115,7 +116,7 @@ public class ClientListAnnonce {
     private void getAnnonceByIdClient() {
         try {
             ConnectionRequest req = new ConnectionRequest();
-            req.setUrl(MyApplication.baseUrl + "/annonce/getAnnonceByIdClient/7");
+            req.setUrl(MyApplication.baseUrl + "/annonce/getAnnonceByIdClient/"+roleProfile.getId());
             req.setPost(false);
             req.addResponseListener(new ActionListener<NetworkEvent>() {
                 @Override
@@ -136,7 +137,7 @@ public class ClientListAnnonce {
                             annonces.add(annonce);
                             System.out.println(p);
                         }
-
+                        ic.refresh();
                     } catch (Exception ex) {
                     }
                 }

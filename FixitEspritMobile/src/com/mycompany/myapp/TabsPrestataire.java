@@ -92,8 +92,8 @@ public class TabsPrestataire extends SideMenuBaseForm {
     }
 
     public void createSideMenu(Resources theme) {
-        Image profilePic = theme.getImage("Logo.png");
-        Image mask = theme.getImage("Logo.png");
+        Image profilePic = theme.getImage("LogoMobile.png");
+        Image mask = theme.getImage("LogoMobile.png");
         mask = mask.scaledHeight(mask.getHeight() + 260 / 4 * 3);
         profilePic = profilePic.fill(mask.getWidth(), mask.getHeight());
         Label profilePicLabel = new Label("", profilePic, "");
@@ -114,7 +114,7 @@ public class TabsPrestataire extends SideMenuBaseForm {
 
         form.getToolbar().addMaterialCommandToSideMenu("  Acceuil", FontImage.MATERIAL_DASHBOARD, e -> getToolbar().closeSideMenu());
         form.getToolbar().addMaterialCommandToSideMenu("  Agaenda", FontImage.MATERIAL_DATE_RANGE, e -> showOtherForm(theme));
-        form.getToolbar().addMaterialCommandToSideMenu("  Déconnexion", FontImage.MATERIAL_EXIT_TO_APP, e -> showOtherForm(theme));
+        form.getToolbar().addMaterialCommandToSideMenu("  Déconnexion", FontImage.MATERIAL_EXIT_TO_APP, e -> new Signin(theme).getForm().show());
 
     }
 

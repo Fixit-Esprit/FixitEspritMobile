@@ -153,8 +153,10 @@ public class Prestataires {
                         }
                         pickerservice.setStrings(listservice);
                         pickerservice.setText("Catégorie de votre besoin");
+                        ic.refresh();
                     } catch (Exception ex) {
                     }
+                    
                 }
             });
             NetworkManager.getInstance().addToQueue(req);
